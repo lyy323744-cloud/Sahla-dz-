@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>sahla dz</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- عداد التخفيض -->
+<div id="countdown">
+  العرض ينتهي خلال: <span id="timer">48:00:00</span>
+</div>
+
+<h1 class="site-title">sahla dz</h1>
+
+<div class="products">
+
+  <div class="product-card">
+    <img src="" alt="منتج 1">
+    <p class="price">1500 DA</p>
+    <button class="order-btn" onclick="goOrder('product1.jpg')">
+      اطلب الآن
+    </button>
+  </div>
+
+  <div class="product-card">
+    <img src="product2.jpg" alt="منتج 2">
+    <p class="price">1200 DA</p>
+    <button class="order-btn" onclick="goOrder('product2.jpg')">
+      اطلب الآن
+    </button>
+  </div>
+
+</div>
+
+<script>
+function goOrder(img){
+  localStorage.setItem("productImage", img);
+  window.location.href = "order.html";
+}
+
+/* Countdown Timer - 48 ساعة */
+let countDownDate = new Date().getTime() + 48*60*60*1000;
+
+let countdownFunction = setInterval(function() {
+  let now = new Date().getTime();
+  let distance = countDownDate - now;
+
+  let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000*60*60));
+  let minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
+  let seconds = Math.floor((distance % (1000*60)) / 1000);
+
+  document.getElementById("timer").innerHTML = hours + "س " 
+    + minutes + "د " + seconds + "ث";
+
+  if(distance < 0){
+    clearInterval(countdownFunction);
+    document.getElementById("timer").innerHTML = "انتهى العرض!";
+  }
+}, 1000);
+</script>
+
+</body>
+</html>
